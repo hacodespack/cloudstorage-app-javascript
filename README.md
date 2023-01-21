@@ -1,5 +1,7 @@
 # Cloudstorage App Javascript
 
+**Update: ** Upload any type of file
+
 **No folder structure required**
 
 **Storage Ruls**
