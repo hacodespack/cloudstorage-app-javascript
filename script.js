@@ -89,34 +89,43 @@ var expandContainerUl = document.querySelector('.expand-container ul');
 var loader = document.getElementsByClassName('loader')[0];
 
 window.onload = showFilesList;
+const vidContainer = document.getElementById('video')
+const audContainer = document.getElementById('audio')
+const imgContainer = document.getElementById('image')
+const othContainer = document.getElementById('other-files')
 // make a function to show all files list
 function showFilesList(){
     // get data from localstorage
     var data = JSON.parse(localStorage.getItem('uploaded-metadata'));
     // refresh all files on function reload
-    document.getElementById('video').innerHTML = '';
-    document.getElementById('audio').innerHTML = '';
-    document.getElementById('image').innerHTML = '';
+    vidContainer.innerHTML = audContainer.innerHTML = imgContainer.innerHTML = othContainer.innerHTML = '';
     for(var i = 0; i < data.length; i++){
         var folder_name = data[i].split('/')[0];
         var file_name = data[i].split('/')[1];
         var path = data[i];
         if(folder_name == 'video'){
-            document.getElementById('video').innerHTML += `
+            vidContainer.innerHTML += `
             <li data-name="${path}">
                 <span>${file_name}</span>
                 <svg onclick="expand(this)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg>
             </li>
             `;
         }else if(folder_name == 'audio'){
-            document.getElementById('audio').innerHTML += `
+            audContainer.innerHTML += `
+            <li data-name="${path}">
+                <span>${file_name}</span>
+                <svg onclick="expand(this)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg>
+            </li>
+            `;
+        }else if(folder_name == 'image'){
+            imgContainer.innerHTML += `
             <li data-name="${path}">
                 <span>${file_name}</span>
                 <svg onclick="expand(this)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg>
             </li>
             `;
         }else{
-            document.getElementById('image').innerHTML += `
+            othContainer.innerHTML += `
             <li data-name="${path}">
                 <span>${file_name}</span>
                 <svg onclick="expand(this)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg>
